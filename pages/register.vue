@@ -135,11 +135,10 @@ export default {
   },
 
   methods: {
-    saveWorker() {
+    async saveWorker() {
       if (this.$refs.formWorker.validate()) {
-        console.log("ok");
         let worker = Object.assign({}, this.worker);
-        console.log(this.worker);
+        let response = await this.$axios.post("http://localhost:3001/workers", worker)
       } else {
         console.log("not ok");
       }

@@ -1,5 +1,14 @@
 {
-    "workers": [
-        
-    ]
+  "workers": [
+    {
+      "cc": "1152467988",
+      "firstName": "Federico",
+      "secondName": "Montoya",
+      "email": "federico29.mg@gmail.com",
+      "password": "123",
+      "rol": "SST",
+      "active": false,
+      "id": 1
+    }
+  ]
 }
