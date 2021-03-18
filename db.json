@@ -9,6 +9,26 @@
       "rol": "SST",
       "active": false,
       "id": 1
+    },
+    {
+      "cc": "1000100850",
+      "firstName": "Manuela",
+      "secondName": "González",
+      "email": "manuela.gonzalez@gmail.com",
+      "password": "456",
+      "rol": "Planta",
+      "active": false,
+      "id": 2
+    },
+    {
+      "cc": "71613127",
+      "firstName": "Eduardo",
+      "secondName": "Montoya",
+      "email": "eduardo.montoya@gmail.com",
+      "password": "789",
+      "rol": "SST",
+      "active": false,
+      "id": 3
     }
   ]
 }
