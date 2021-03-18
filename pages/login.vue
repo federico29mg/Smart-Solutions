@@ -12,6 +12,7 @@
             <v-card-text>
               <v-form ref="form" v-model="valid" lazy-validation>
                 <v-text-field
+                  v-model="user.cc"
                   append-icon="mdi-account"
                   :rules="[rules.userRequired]"
                   color="#43BF6F"
@@ -21,6 +22,7 @@
                 ></v-text-field>
 
                 <v-text-field
+                  v-model="user.password"
                   :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
                   :rules="[rules.passwordRequired]"
                   color="#43BF6F"
@@ -35,7 +37,7 @@
                 <v-btn
                   :disabled="!valid"
                   color="#48C4BF"
-                  @click="validate"
+                  @click="validateWorker"
                   tile
                   width="100%"
                 >
@@ -66,6 +68,10 @@ export default {
 
   data() {
     return {
+      user: {
+        cc: "",
+        password: "",
+      },
       valid: true,
       show: false,
       row: null,
@@ -77,9 +83,26 @@ export default {
   },
 
   methods: {
-    
-    validate() {
-      this.$refs.form.validate();
+    async validateWorker() {
+      var found = false;
+
+      let response = await this.$axios.get("http://localhost:3001/workers");
+
+      for (var i = 0; i < response.data.length && !found; i++) {
+        if (response.data[i].cc == this.user.cc) {
+          if (response.data[i].password == this.user.password) {
+            if (response.data[i].active == true) found = !found;
+          }
+
+          
+        }
+      }
+
+      if (found) {
+        location.href = "http://localhost:3000";
+      } else {
+        console.log("Pailas");
+      }
     },
   },
 };

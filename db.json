@@ -7,7 +7,7 @@
       "email": "federico29.mg@gmail.com",
       "password": "123",
       "rol": "SST",
-      "active": false,
+      "active": true,
       "id": 1
     },
     {
