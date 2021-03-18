@@ -1,9 +1,6 @@
 <template>
-  <v-main >
-    <v-container
-      class="fill-height"
-      style="background: #FFFFFF"
-    >
+  <v-main>
+    <v-container class="fill-height" style="background: #ffffff">
       <v-row justify="center" align="center">
         <v-col cols="4">
           <v-card class="pa-2" outlined>
@@ -137,9 +134,12 @@ export default {
   methods: {
     async saveWorker() {
       if (this.$refs.formWorker.validate()) {
-        let worker = Object.assign({}, this.worker)
-        let response = await this.$axios.post("http://localhost:3001/workers", worker)
-        location.href = "http://localhost:3000/success"
+        let worker = Object.assign({}, this.worker);
+        let response = await this.$axios.post(
+          "http://localhost:3001/workers",
+          worker
+        );
+        location.href = "http://localhost:3000/success";
       } else {
         console.log("not ok");
       }
