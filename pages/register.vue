@@ -132,14 +132,37 @@ export default {
   },
 
   methods: {
+    async validateWorker() {
+      let worker = Object.assign({}, this.worker);
+      let response = await this.$axios.get("http://localhost:3001/workers");
+
+      for (var i = 0; i < response.data.length; i++) {
+        if (response.data[i].cc == this.worker.cc) {
+          return false;
+        }
+      }
+      return true;
+    },
+
     async saveWorker() {
       if (this.$refs.formWorker.validate()) {
+        var found = false;
+        let response1 = await this.$axios.get("http://localhost:3001/workers");
         let worker = Object.assign({}, this.worker);
-        let response = await this.$axios.post(
-          "http://localhost:3001/workers",
-          worker
-        );
-        location.href = "http://localhost:3000/success";
+        for (var i = 0; i < response1.data.length; i++) {
+          if (response1.data[i].cc == this.worker.cc) {
+            found = true;
+          }
+        }
+        if (!found) {
+          let response = await this.$axios.post(
+            "http://localhost:3001/workers",
+            worker
+          );
+          location.href = "http://localhost:3000/success";
+        } else {
+          console.log("ohhh oh");
+        }
       } else {
         console.log("not ok");
       }
