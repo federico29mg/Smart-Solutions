@@ -161,10 +161,18 @@ export default {
           );
           location.href = "http://localhost:3000/success";
         } else {
-          console.log("ohhh oh");
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Lo siento, esta cedula ya está registrada!",
+          });
         }
       } else {
-        console.log("not ok");
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Algo salió mal!",
+        });
       }
     },
   },

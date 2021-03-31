@@ -52,11 +52,11 @@
 
 <script>
 export default {
-    layout: "blank-layout",
+  layout: "blank-layout",
 
   data: () => ({
     valid: true,
-    
+
     incident: {
       title: "",
       description: "",
@@ -74,14 +74,24 @@ export default {
     async saveIncident() {
       if (this.$refs.formIncident.validate()) {
         let incident = Object.assign({}, this.incident);
-        
+
         let response = await this.$axios.post(
-            "http://localhost:3001/incidents",
-            incident
-          );
-          location.href = "http://localhost:3000/success";
+          "http://localhost:3001/incidents",
+          incident
+        );
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Incidente creado",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       } else {
-        console.log("not ok");
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Algo salió mal!",
+        });
       }
     },
   },

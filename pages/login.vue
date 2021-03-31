@@ -93,15 +93,17 @@ export default {
           if (response.data[i].password == this.user.password) {
             if (response.data[i].active == true) found = !found;
           }
-
-          
         }
       }
 
       if (found) {
         location.href = "http://localhost:3000/incident";
       } else {
-        console.log("Pailas");
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Algo salió mal!",
+        });
       }
     },
   },
