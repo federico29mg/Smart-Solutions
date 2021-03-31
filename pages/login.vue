@@ -99,7 +99,7 @@ export default {
       }
 
       if (found) {
-        location.href = "http://localhost:3000";
+        location.href = "http://localhost:3000/incident";
       } else {
         console.log("Pailas");
       }

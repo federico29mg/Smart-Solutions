@@ -39,5 +39,18 @@
             "active": true,
             "id": 4
         }
+    ],
+    "incidents": [{
+            "title": "Prueba",
+            "description": "",
+            "category": "Riesgo Alto",
+            "id": 1
+        },
+        {
+            "title": "Test",
+            "description": "Test",
+            "category": "Riesgo Medio",
+            "id": 2
+        }
     ]
 }
