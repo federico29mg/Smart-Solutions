@@ -161,18 +161,20 @@ export default {
           );
           location.href = "http://localhost:3000/success";
         } else {
-          Swal.fire({
-            icon: "error",
+          this.$swal.fire({
+            type: "error",
             title: "Oops...",
-            text: "Lo siento, esta cedula ya está registrada!",
+            text: "Lo siento, esta cédula ya está registrada!",
           });
+          this.$refs.formWorker.reset();
         }
       } else {
-        Swal.fire({
-          icon: "error",
+        this.$swal.fire({
+          type: "error",
           title: "Oops...",
           text: "Algo salió mal!",
         });
+        this.$refs.formWorker.reset();
       }
     },
   },
