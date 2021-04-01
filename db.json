@@ -53,25 +53,33 @@
       "description": "Test",
       "category": "Riesgo Medio",
       "id": 2
-    },
-    {
-      "title": "Prueba",
-      "description": "12",
-      "category": "Riesgo Bajo",
-      "id": 3
-    },
-    {
-      "title": "Prueba#4",
-      "description": "si",
-      "category": "Riesgo Medio",
-      "id": 4
     }
   ],
   "solutions": [
     {
-      "idIncident": "",
+      "idIncident": 1,
       "description": "muy bueno tu problema",
       "id": 1
+    },
+    {
+      "idIncident": 1,
+      "description": "otra solucion",
+      "id": 2
+    },
+    {
+      "idIncident": 1,
+      "description": "otra solucion 2",
+      "id": 3
+    },
+    {
+      "idIncident": 1,
+      "description": "buen problema",
+      "id": 4
+    },
+    {
+      "idIncident": 2,
+      "description": "prueba solucion 2",
+      "id": 5
     }
   ]
 }

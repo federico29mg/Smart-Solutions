@@ -138,15 +138,24 @@ export default {
       if (this.$refs.formSolution.validate()) {
         // Crear un nuevo objeto con la info del producto
         let solution = Object.assign({}, this.solution);
+        solution.idIncident = parseInt(this.id_incident);
         let response = await this.$axios.post(
           "http://localhost:3001/solutions",
           solution
         );
-        this.$swal.fire({
-          type: "success",
-          title: "Operación exitosa.",
-          text: "La solución se agregó correctamente.",
-        });
+        this.$swal
+          .fire({
+            type: "success",
+            title: "Operación exitosa.",
+            text: "La solución se agregó correctamente.",
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+          })
+          .then((result) => {
+            if (result.value) {
+              this.$router.push("/incident-sst");
+            }
+          });
       } else {
         this.$swal.fire({
           type: "warning",

@@ -1,38 +1,59 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12">
+  <v-main>
+    <v-container class="fill-height" justify-center>
       <v-card>
-        <v-card-actions>
-          <h1>Listado de incidentes</h1>
-          <v-spacer></v-spacer>
-          <v-btn color="success" class="text-none" to="/incident/"
-            >Crear incidente</v-btn
-          >
-        </v-card-actions>
-        <v-card-text>
-          <v-data-table
-            :headers="headers"
-            :items="incidents"
-            :items-per-page="5"
-            class="elevation-1"
-          >
-            <template v-slot:item.actions="{ item }">
-              <v-icon class="mr-2" @click="editItem(item)">
-                mdi-pencil
-              </v-icon>
-              <v-icon @click="deleteItem(item)">
-                mdi-delete
-              </v-icon>
-            </template>
-          </v-data-table>
-        </v-card-text>
+        <v-row>
+          <v-col cols="12">
+            <v-card class="pa-4">
+              <v-card-actions>
+                <h1>Listado de incidentes</h1>
+                <v-spacer></v-spacer>
+                <v-btn color="#48C4BF" class="text-none" to="/incident/"
+                  >Crear incidente</v-btn
+                >
+              </v-card-actions>
+              <v-card-text>
+                <v-data-table
+                  :headers="headers"
+                  :items="incidents"
+                  :items-per-page="5"
+                  class="elevation-1"
+                >
+                  <template v-slot:item.actions="{ item }">
+                    <v-hover v-slot="{ hover }">
+                      <v-icon
+                        :color="active || hover ? '#43BF6F' : 'grey lighten-1'"
+                        class="mr-2"
+                        @click="editItem(item)"
+                        small
+                      >
+                        mdi-pencil
+                      </v-icon>
+                    </v-hover>
+                    <v-hover v-slot="{ hover }">
+                      <v-icon
+                        :color="active || hover ? '#43BF6F' : 'grey lighten-1'"
+                        class="mr-2"
+                        @click="deleteItem(item)"
+                        small
+                      >
+                        mdi-delete
+                      </v-icon>
+                    </v-hover>
+                  </template>
+                </v-data-table>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
       </v-card>
-    </v-col>
-  </v-row>
+    </v-container>
+  </v-main>
 </template>
 
 <script>
 export default {
+  layout: "blank-layout",
   beforeMount() {
     this.getIncidents();
   },
@@ -79,8 +100,8 @@ export default {
       this.$swal
         .fire({
           type: "warning",
-          title: "¿Está seguro de eliminar el item?",
-          text: "Al borrar el item no se prodrá recuperar.",
+          title: "¿Está seguro de eliminar el incidente?",
+          text: "Al borrar el incidente no se prodrá recuperar.",
           allowEscapeKey: false,
           allowOutsideClick: false,
           showCancelButton: true,
@@ -88,14 +109,14 @@ export default {
         .then(async (result) => {
           if (result.value) {
             try {
-              let url = "http://localhost:3001/" + item.id;
+              let url = "http://localhost:3001/incidents/" + item.id;
               await this.$axios.delete(url);
               this.$swal.fire({
                 type: "success",
                 title: "Operación exitosa.",
                 text: "El item se eliminó correctamente.",
               });
-              this.getProducts();
+              this.getIncidents();
             } catch (error) {
               this.$swal.fire({
                 type: "error",
@@ -109,3 +130,6 @@ export default {
   },
 };
 </script>
+
+<style>
+</style>
