@@ -4,7 +4,7 @@
       <v-col cols="10">
         <v-card class="pa-2" outlined>
           <v-card-actions>
-            <h1>Respuesta a incidente</h1>
+            <h1>Edición de Incidente</h1>
             <v-spacer></v-spacer>
             <v-btn class="text-none" to="/incident-sst"
               >Ver lista de incidentes</v-btn
@@ -23,7 +23,6 @@
             <v-text-field
               v-model="incident.title"
               :rules="[rules.titleRequired]"
-              disabled
               color="#43BF6F"
               label="Titulo de incidente"
               required
@@ -32,7 +31,6 @@
               v-model="incident.category"
               :items="categories"
               color="#43BF6F"
-              disabled
               :rules="[rules.categoryRequired]"
               label="Categoria"
               required
@@ -42,19 +40,7 @@
               color="#43BF6F"
               name="Problema del incidente"
               filled
-              readonly
               label="Problema"
-              :rules="[rules.descriptionRequired]"
-              auto-grow
-            ></v-textarea>
-            <v-textarea
-              v-model="solution.description"
-              color="#43BF6F"
-              name="Descripcion de la solución"
-              filled
-              clearable
-              clear-icon="mdi-close-circle"
-              label="Descripcion de la solución"
               :rules="[rules.descriptionRequired]"
               auto-grow
             ></v-textarea>
@@ -63,8 +49,8 @@
               color="#48C4BF"
               class="mr-4"
               width="100%"
-              @click="addSolution()"
-              >Agregar solucion</v-btn
+              @click="updateIncident()"
+              >Editar Incidente</v-btn
             >
           </v-form>
         </v-card>
@@ -83,12 +69,8 @@ export default {
   },
 
   data: () => ({
-    solution: {
-      idIncident: "",
-      description: "",
-    },
-    valid: true,
     incident: {},
+    valid: true,
     rules: {
       idRequired: (v) => !!v || "El código del incidente debe ser ingresado",
       titleRequired: (v) => !!v || "El titulo debe ser ingresado",
@@ -130,24 +112,18 @@ export default {
       }
     },
 
-    /**
-     * Enviar una solicitud (Request) en un método update
-     * Para modificar el producto
-     */
-    async addSolution() {
+    async updateIncident() {
       if (this.$refs.formSolution.validate()) {
-        // Crear un nuevo objeto con la info del producto
-        let solution = Object.assign({}, this.solution);
-        solution.idIncident = parseInt(this.id_incident);
-        let response = await this.$axios.post(
-          "http://localhost:3001/solutions",
-          solution
+        let incident = Object.assign({}, this.incident);
+        let response = await this.$axios.put(
+          "http://localhost:3001/incidents/" + this.id_incident,
+          incident
         );
         this.$swal
           .fire({
             icon: "success",
             title: "Operación exitosa.",
-            text: "La solución se agregó correctamente.",
+            text: "El incidente se actualizó correctamente",
             allowEscapeKey: false,
             allowOutsideClick: false,
           })

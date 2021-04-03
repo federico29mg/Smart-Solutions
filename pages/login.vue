@@ -85,6 +85,7 @@ export default {
   methods: {
     async validateWorker() {
       var found = false;
+      var rol = "";
 
       let response = await this.$axios.get("http://localhost:3001/workers");
 
@@ -92,14 +93,19 @@ export default {
         if (response.data[i].cc == this.user.cc) {
           if (response.data[i].password == this.user.password) {
             if (response.data[i].active == true) found = !found;
+            rol = response.data[i].rol;
           }
         }
       }
 
       if (found) {
-        location.href = "http://localhost:3000/incident";
+        if (rol == "Planta") {
+          location.href = "http://localhost:3000/incident";
+        } else {
+          location.href = "http://localhost:3000/incident-sst";
+        }
       } else {
-        Swal.fire({
+        this.$swal.fire({
           icon: "error",
           title: "Oops...",
           text: "Algo salió mal!",

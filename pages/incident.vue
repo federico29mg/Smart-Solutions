@@ -86,7 +86,7 @@ export default {
           incident
         );
         this.$swal.fire({
-          type: "success",
+          icon: "success",
           title: "Incidente creado",
           showConfirmButton: false,
           timer: 1500,
@@ -94,7 +94,7 @@ export default {
         this.$refs.formIncident.reset();
       } else {
         this.$swal.fire({
-          type: "error",
+          icon: "error",
           title: "Oops...",
           text: "Algo salió mal!",
         });

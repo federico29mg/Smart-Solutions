@@ -17,7 +17,7 @@
       "email": "manuela.gonzalez@gmail.com",
       "password": "456",
       "rol": "Planta",
-      "active": false,
+      "active": true,
       "id": 2
     },
     {
@@ -39,47 +39,55 @@
       "rol": "Planta",
       "active": true,
       "id": 4
+    },
+    {
+      "cc": "1000100100",
+      "firstName": "Juana",
+      "secondName": "Perez",
+      "email": "juana-perez@gmail.com",
+      "password": "123",
+      "rol": "SST",
+      "active": true,
+      "id": 5
     }
   ],
   "incidents": [
     {
-      "title": "Prueba",
-      "description": "hoasldalsdlasdlasldasdsdasssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss",
-      "category": "Riesgo Alto",
-      "id": 1
-    },
-    {
-      "title": "Test",
+      "title": "Test #2",
       "description": "Test",
       "category": "Riesgo Medio",
-      "id": 2
+      "id": 3
+    },
+    {
+      "title": "Test #2",
+      "description": "Test",
+      "category": "Riesgo Medio",
+      "id": 4
+    },
+    {
+      "title": "Test #2",
+      "description": "Test",
+      "category": "Riesgo Medio",
+      "id": 5
+    },
+    {
+      "title": "Test #56",
+      "description": "Hay un problema",
+      "category": "Riesgo Alto",
+      "id": 6
+    },
+    {
+      "title": "Test #123",
+      "description": "Wow",
+      "category": "Riesgo Alto",
+      "id": 7
     }
   ],
   "solutions": [
     {
-      "idIncident": 1,
-      "description": "muy bueno tu problema",
-      "id": 1
-    },
-    {
-      "idIncident": 1,
-      "description": "otra solucion",
-      "id": 2
-    },
-    {
-      "idIncident": 1,
-      "description": "otra solucion 2",
-      "id": 3
-    },
-    {
-      "idIncident": 1,
-      "description": "buen problema",
-      "id": 4
-    },
-    {
-      "idIncident": 2,
-      "description": "prueba solucion 2",
-      "id": 5
+      "idIncident": 5,
+      "description": "juas",
+      "id": 8
     }
   ]
 }

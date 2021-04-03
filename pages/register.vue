@@ -162,7 +162,7 @@ export default {
           location.href = "http://localhost:3000/success";
         } else {
           this.$swal.fire({
-            type: "error",
+            icon: "error",
             title: "Oops...",
             text: "Lo siento, esta cédula ya está registrada!",
           });
@@ -170,7 +170,7 @@ export default {
         }
       } else {
         this.$swal.fire({
-          type: "error",
+          icon: "error",
           title: "Oops...",
           text: "Algo salió mal!",
         });
