@@ -11,7 +11,7 @@
               Tu registro ha sido recibido y pronto un administrador lo validará
             </p>
             <br />
-            <a href="http://localhost:3000/login"
+            <a href="http://localhost:3000"
               >Volver a la página de Inicio de Sesión</a
             >
           </div>

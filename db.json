@@ -1,6 +1,16 @@
 {
   "workers": [
     {
+      "cc": "1234512345",
+      "firstName": "Santiago",
+      "secondName": "Urrego",
+      "email": "saurmo@gmail.com",
+      "password": "123",
+      "rol": "Admin",
+      "active": true,
+      "id": 0
+    },
+    {
       "cc": "1152467988",
       "firstName": "Federico",
       "secondName": "Montoya",
@@ -53,41 +63,56 @@
   ],
   "incidents": [
     {
+      "title": "Test #1",
+      "description": "Hay un problema",
+      "category": "Riesgo Medio",
+      "id": 1
+    },
+    {
       "title": "Test #2",
-      "description": "Test",
+      "description": "Hay un problema",
+      "category": "Riesgo Bajo",
+      "id": 2
+    },
+    {
+      "title": "Test #3",
+      "description": "Hay un problema",
       "category": "Riesgo Medio",
       "id": 3
     },
     {
-      "title": "Test #2",
-      "description": "Test",
-      "category": "Riesgo Medio",
+      "title": "Test #4",
+      "description": "Hay un problema",
+      "category": "Riesgo Alto",
       "id": 4
     },
     {
-      "title": "Test #2",
-      "description": "Test",
-      "category": "Riesgo Medio",
-      "id": 5
-    },
-    {
-      "title": "Test #56",
+      "title": "Test #5",
       "description": "Hay un problema",
       "category": "Riesgo Alto",
-      "id": 6
-    },
-    {
-      "title": "Test #123",
-      "description": "Wow",
-      "category": "Riesgo Alto",
-      "id": 7
+      "id": 5
     }
   ],
   "solutions": [
     {
-      "idIncident": 5,
-      "description": "juas",
-      "id": 8
+      "idIncident": 1,
+      "description": "Esta es una solución",
+      "id": 1
+    },
+    {
+      "idIncident": 1,
+      "description": "Esta es una solución",
+      "id": 2
+    },
+    {
+      "idIncident": 2,
+      "description": "Esta es una solución",
+      "id": 4
+    },
+    {
+      "idIncident": 3,
+      "description": "Esta es una solución",
+      "id": 5
     }
   ]
 }

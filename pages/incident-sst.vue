@@ -49,6 +49,12 @@
                       mdi-delete
                     </v-icon>
                   </v-hover>
+                  <v-btn @click="createPath(item)" color="#48C4BF" class="text-none"
+                    >soluciones</v-btn
+                  >
+                  <!-- <v-hover v-slot="{ hover }">
+                    <a onclick="createPath(item)" style="">soluciones</a>
+                  </v-hover> -->
                 </template>
               </v-data-table>
             </v-card-text>
@@ -72,19 +78,16 @@ export default {
           text: "Código",
           align: "start",
           value: "id",
+          width: "25%",
         },
-        { text: "Titulo", value: "title" },
-        { text: "Categoría", value: "category" },
-        { text: "Acción", value: "actions" },
+        { text: "Titulo", width: "25%", value: "title" },
+        { text: "Categoría", width: "25%", value: "category" },
+        { text: "Acciones", width: "25%", value: "actions" },
       ],
       incidents: [],
     };
   },
   methods: {
-    /**
-     * Enviar una solicitud (Request) en un método get
-     * Para consultar todos los productos
-     */
     async getIncidents() {
       try {
         let response = await this.$axios.get("http://localhost:3001/incidents");
@@ -92,6 +95,11 @@ export default {
       } catch (error) {
         console.error(error);
       }
+    },
+
+    createPath(item) {
+      let url = `Solutions/${item.id}`;
+      this.$router.push(url);
     },
 
     addSolution(item) {
@@ -153,4 +161,13 @@ export default {
 </script>
 
 <style>
+a {
+  text-decoration: none;
+  color: #48c4bf;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #43bf6f;
+}
 </style>

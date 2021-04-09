@@ -1,89 +1,131 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <div class="text-center">
-        <logo />
-        <vuetify-logo />
-      </div>
-      <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>
-            For more information on Vuetify, check out the <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              documentation
-            </a>.
-          </p>
-          <p>
-            If you have questions, please join the official <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="chat"
-            >
-              discord
-            </a>.
-          </p>
-          <p>
-            Find a bug? Report it on the github <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="contribute"
-            >
-              issue board
-            </a>.
-          </p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt Documentation
-          </a>
-          <br>
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt GitHub
-          </a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            nuxt
-            to="/login"
-          >
-            Continue
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-col>
-  </v-row>
+  <v-main>
+    <v-container class="fill-height" style="background: #ffffff">
+      <v-row justify="center" align="center">
+        <v-col cols="3">
+          <v-img src="https://i.imgur.com/OeM0r4z.png" />
+        </v-col>
+        <v-col cols="4">
+          <v-card class="pa-2" outlined>
+            <v-card-title> Bienvenido de vuelta, </v-card-title>
+
+            <v-card-text>
+              <v-form ref="form" v-model="valid" lazy-validation>
+                <v-text-field
+                  v-model="user.cc"
+                  append-icon="mdi-account"
+                  :rules="[rules.userRequired]"
+                  color="#43BF6F"
+                  label="Cédula de Ciudadanía"
+                  required
+                  outlined
+                ></v-text-field>
+
+                <v-text-field
+                  v-model="user.password"
+                  :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+                  :rules="[rules.passwordRequired]"
+                  color="#43BF6F"
+                  :type="show ? 'text' : 'password'"
+                  label="Contraseña"
+                  class="input-group--focused"
+                  @click:append="show = !show"
+                  required
+                  outlined
+                ></v-text-field>
+
+                <v-btn
+                  :disabled="!valid"
+                  color="#48C4BF"
+                  @click="validateWorker"
+                  tile
+                  width="100%"
+                >
+                  Iniciar Sesión
+                </v-btn>
+              </v-form>
+            </v-card-text>
+
+            <v-card-text class="text-center">
+              <a href="http://localhost:3000/recover">¿Olvidó su contraseña?</a>
+
+              <br />
+
+              <a href="http://localhost:3000/register"
+                >¿No tiene usuario? Regístrese</a
+              >
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-main>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
-
 export default {
-  components: {
-    Logo,
-    VuetifyLogo
-  }
-}
+  layout: "blank-layout",
+
+  data() {
+    return {
+      user: {
+        cc: "",
+        password: "",
+      },
+      valid: true,
+      show: false,
+      row: null,
+      rules: {
+        userRequired: (v) => !!v || "El usuario debe ser ingresado",
+        passwordRequired: (v) => !!v || "La contraseña debe ser ingresada",
+      },
+    };
+  },
+
+  methods: {
+    async validateWorker() {
+      var found = false;
+      var rol = "";
+
+      let response = await this.$axios.get("http://localhost:3001/workers");
+
+      for (var i = 0; i < response.data.length && !found; i++) {
+        if (response.data[i].cc == this.user.cc) {
+          if (response.data[i].password == this.user.password) {
+            if (response.data[i].active == true) found = !found;
+            rol = response.data[i].rol;
+          }
+        }
+      }
+
+      if (found) {
+        if (rol == "Planta") {
+          location.href = "http://localhost:3000/incident";
+        } else if (rol == "SST") {
+          location.href = "http://localhost:3000/incident-sst";
+        } else {
+          location.href = "http://localhost:3000/admin"
+        }
+      } else {
+        this.$swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Algo salió mal!",
+        });
+      }
+    },
+  },
+};
 </script>
+
+<style>
+a {
+  color: "#41BC48";
+  text-decoration: none;
+}
+
+a:hover {
+  color: "#5EB741";
+  text-decoration: underline;
+}
+</style>
