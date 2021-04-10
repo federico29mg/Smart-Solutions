@@ -4,7 +4,7 @@
       <v-row justify="center" align="center">
         <v-col cols="5">
           <v-card class="pa-4">
-            <v-card-title class="mb-3" style="font-size: 40px;">
+            <v-card-title class="mb-3" style="font-size: 30px;">
               Soluciones al incidente #{{ id_incident }}
             </v-card-title>
             <v-card-subtitle style="font-size: 20px;">

@@ -66,7 +66,7 @@
               outlined
             ></v-text-field>
             <v-row>
-              <v-col cols="11">
+              <v-col cols="10" >
                 <v-select
                   v-model="worker.rol"
                   :rules="[rules.rolRequired]"
@@ -86,10 +86,10 @@
                 ></v-checkbox>
               </v-col>
             </v-row>
-            <v-btn
+            <v-btn 
               :disabled="!valid"
               color="#48C4BF"
-              class="mr-4"
+              class="mb-5"
               width="100%"
               @click="updateWorker()"
               >Actualizar Trabajador</v-btn
