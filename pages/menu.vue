@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  layout: "default",
+  layout: "menu-layout",
 };
 </script>
 

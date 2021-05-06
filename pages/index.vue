@@ -66,11 +66,16 @@
 export default {
   layout: "blank-layout",
 
+  beforeMount() {
+    localStorage.clear();
+  },
+
   data() {
     return {
       user: {
         cc: "",
         password: "",
+        rol: "",
       },
       valid: true,
       show: false,
@@ -85,7 +90,6 @@ export default {
   methods: {
     async validateWorker() {
       var found = false;
-      var rol = "";
 
       let response = await this.$axios.get("http://localhost:3001/workers");
 
@@ -93,19 +97,15 @@ export default {
         if (response.data[i].cc == this.user.cc) {
           if (response.data[i].password == this.user.password) {
             if (response.data[i].active == true) found = !found;
-            rol = response.data[i].rol;
+            this.user.rol = response.data[i].rol;
           }
         }
       }
 
       if (found) {
-        if (rol == "Planta") {
-          location.href = "http://localhost:3000/menu";
-        } else if (rol == "SST") {
-          location.href = "http://localhost:3000/menu";
-        } else {
-          location.href = "http://localhost:3000/menu"
-        }
+        delete this.user.password;
+        localStorage.setItem("usuario", JSON.stringify(this.user));
+        location.href = "http://localhost:3000/menu";
       } else {
         this.$swal.fire({
           icon: "error",
