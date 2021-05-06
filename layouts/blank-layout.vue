@@ -9,7 +9,7 @@
     <nuxt />
 
     <v-footer :absolute="!fixed" app>
-      <span>Soteria Solutions</span>
+      <span>Soteria Solutions &copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
   </v-app>
 </template>

@@ -100,11 +100,11 @@ export default {
 
       if (found) {
         if (rol == "Planta") {
-          location.href = "http://localhost:3000/incident";
+          location.href = "http://localhost:3000/menu";
         } else if (rol == "SST") {
-          location.href = "http://localhost:3000/incident-sst";
+          location.href = "http://localhost:3000/menu";
         } else {
-          location.href = "http://localhost:3000/admin"
+          location.href = "http://localhost:3000/menu"
         }
       } else {
         this.$swal.fire({
