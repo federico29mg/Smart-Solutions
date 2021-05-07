@@ -6,6 +6,12 @@
           <v-img src="https://i.imgur.com/OeM0r4z.png" />
         </v-col>
         <v-col cols="4">
+          <v-progress-linear 
+          v-if="loading"
+          color="#41b883"
+          timeout="2000"
+          indeterminate 
+          ></v-progress-linear>
           <v-card class="pa-2" outlined>
             <v-card-title> Bienvenido de vuelta, </v-card-title>
 
@@ -30,6 +36,7 @@
                   label="Contraseña"
                   class="input-group--focused"
                   @click:append="show = !show"
+                  @keyup.enter="validateWorker"
                   required
                   outlined
                 ></v-text-field>
@@ -77,6 +84,7 @@ export default {
         password: "",
         rol: "",
       },
+      loading: false,
       valid: true,
       show: false,
       row: null,
@@ -89,6 +97,10 @@ export default {
 
   methods: {
     async validateWorker() {
+      this.loading = true;
+      setTimeout(() => {
+        this.loading = false;
+      }, 1500)
       var found = false;
 
       let response = await this.$axios.get("http://localhost:3001/workers");
