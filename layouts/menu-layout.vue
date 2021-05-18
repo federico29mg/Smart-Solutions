@@ -3,7 +3,7 @@
     <v-navigation-drawer v-model="drawer" :clipped="clipped" fixed app>
       <v-list>
         <v-list-item
-          v-if="this.usuario.rol === 'SST' || rol === 'Planta'"
+          v-if="this.usuario.rol === 'SST'"
           class="text-decoration-none"
           :to="items[0].to"
           router
@@ -33,7 +33,7 @@
         </v-list-item>
 
         <v-list-item
-          v-if="this.usuario.rol === 'SST' || rol === 'Planta'"
+          v-if="this.usuario.rol === 'SST' || this.usuario.rol === 'Planta'"
           class="text-decoration-none"
           :to="items[3].to"
           router

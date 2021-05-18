@@ -91,6 +91,12 @@
       "description": "Hay un problema",
       "category": "Riesgo Alto",
       "id": 5
+    },
+    {
+      "title": "Titulo de ejemplo",
+      "description": "Descripcion de ejemplo",
+      "category": "Riesgo Alto",
+      "id": 6
     }
   ],
   "solutions": [
@@ -113,6 +119,16 @@
       "idIncident": 3,
       "description": "Esta es una solución",
       "id": 5
+    },
+    {
+      "idIncident": 6,
+      "description": "Solucion de ejemplo",
+      "id": 6
+    },
+    {
+      "idIncident": 6,
+      "description": "Solucion 2 de ejemplo",
+      "id": 7
     }
   ]
 }
